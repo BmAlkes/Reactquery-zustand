@@ -1,13 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
+import { QueryFunctionContext, useQuery } from "@tanstack/react-query";
 import api from "../../services/api";
 import { Repo } from "../types";
 
-async function getRepos() {
-  const { data } = await api.get<Repo[]>(`/users/BmAlkes/repos`);
+async function getRepos(ctx: QueryFunctionContext) {
+  const [, userId] = ctx.queryKey;
+  const { data } = await api.get<Repo[]>(`/users/${userId}/repos`);
 
   return data;
 }
 
-export default function useFetchRespo() {
-  return useQuery(["repos"], getRepos);
+export default function useFetchRespo(userId: string) {
+  return useQuery(["repos", userId], getRepos);
 }

@@ -1,20 +1,37 @@
+import { useCallback } from "react";
 import "./App.css";
+
+import useFetchRepos from "./queries/repo";
+import useFavoriteRepoStore from "./store/useFavoriteRepos";
 import Card from "./Components/Card";
-import useFetchRespo from "./queries/repo";
 
 function App() {
-  const { data } = useFetchRespo();
-  console.log(data);
+  const { data } = useFetchRepos("BmAlkes");
+  const favoriteRepoIds = useFavoriteRepoStore(
+    (state) => state.favoriteRepoIds
+  );
+  const addToFavorites = useFavoriteRepoStore((state) => state.addToFavorites);
+  const removeFromFavorites = useFavoriteRepoStore(
+    (state) => state.removeFromFavorites
+  );
+
+  const handleAddToFavorites = useCallback((repoId: number) => {
+    addToFavorites(repoId);
+  }, []);
+
+  const handleRemoveFromFavorites = useCallback((repoId: number) => {
+    removeFromFavorites(repoId);
+  }, []);
 
   return (
     <div className="App">
       {data?.map((repo) => (
         <Card
-          repo={repo}
           key={repo.id}
-          addToFavorites={() => {}}
-          isFavorite
-          removeFromFavorites={() => {}}
+          repo={repo}
+          addToFavorites={handleAddToFavorites}
+          removeFromFavorites={handleRemoveFromFavorites}
+          isFavorite={favoriteRepoIds.includes(repo.id)}
         />
       ))}
     </div>
