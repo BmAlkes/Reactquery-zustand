@@ -1,8 +1,8 @@
 <h2>🗄️ Zustand and React query</h2>
 
-<p><a href="">Link project</a></p>
+<p><a href="https://reactquery-zustand.vercel.app/">Link project</a></p>
 
-<img src=""/>
+<img src="https://github.com/BmAlkes/Reactquery-zustand/blob/main/src/assets/Screenshot_2.png?raw=true"/>
 
 <h2>📝 Description</h2>
 <p>Project with the aim of studying and improving the use of the typescript tool, Zustand and React Query</p>
