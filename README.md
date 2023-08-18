@@ -1,4 +1,4 @@
-<h2>🗄️ Fintech project typescript</h2>
+<h2>🗄️ Zustand and React query</h2>
 
 <p><a href="">Link project</a></p>
 
